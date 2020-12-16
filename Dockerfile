@@ -3,6 +3,7 @@ LABEL maintainer="Ruslan Zhdanov <nl.ruslan@yandex.ru> (@TheDemonCat)"
 
 ARG ONEC_USERNAME
 ARG ONEC_PASSWORD
+ARG VERSION
 ENV installer_type=client
 
 RUN apk --no-cache add bash curl grep \
