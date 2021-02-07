@@ -7,3 +7,4 @@ docker build -t demoncat/onec-full:"$ONEC_VERSION" \
     --build-arg ONEC_USERNAME="$ONEC_USERNAME" \
     --build-arg ONEC_PASSWORD="$ONEC_PASSWORD"  \
     --build-arg VERSION="$ONEC_VERSION" .
+ 
