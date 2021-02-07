@@ -20,6 +20,8 @@ LABEL maintainer="Ruslan Zhdanov <nl.ruslan@yandex.ru> (@TheDemonCat)"
 COPY --from=downloader /tmp/*.deb /tmp/
 
 RUN cd /tmp \ 
+    && mkdir dist \
+    && cd dist \
     && dpkg -i 1c-enterprise83-common_*.deb \
       1c-enterprise83-server_*.deb \
       1c-enterprise83-ws_*.deb \
