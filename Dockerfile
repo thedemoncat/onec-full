@@ -17,11 +17,9 @@ RUN apk --no-cache add bash curl grep \
 FROM demoncat/onec-base:latest as base
 LABEL maintainer="Ruslan Zhdanov <nl.ruslan@yandex.ru> (@TheDemonCat)"
 
-COPY --from=downloader /tmp/*.deb /tmp/
+COPY --from=downloader /tmp/*.deb /tmp/dist/
 
-RUN cd /tmp \ 
-    && mkdir dist \
-    && cd dist \
+RUN cd /tmp/dist \ 
     && dpkg -i 1c-enterprise83-common_*.deb \
       1c-enterprise83-server_*.deb \
       1c-enterprise83-ws_*.deb \
