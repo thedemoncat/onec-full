@@ -1,7 +1,7 @@
 
-ARG VERSION
+ARG ONEC_VERSION
 
-FROM demoncat/onec:full-"$VERSION"
+FROM demoncat/onec:full-"$ONEC_VERSION"
 
 RUN set -xe \
     && apt-get update \

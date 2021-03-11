@@ -1,25 +1,35 @@
-FROM alpine:latest as downloader
+FROM alpine as downloader
 LABEL maintainer="Ruslan Zhdanov <nl.ruslan@yandex.ru> (@TheDemonCat)"
 
 ARG ONEC_USERNAME
 ARG ONEC_PASSWORD
-ARG VERSION
-ENV installer_type=client
+ARG ONEC_VERSION
+ARG TYPE=platform83
 
-RUN apk --no-cache add bash curl grep \
+ARG ONEGET_VER=v0.0.7
+WORKDIR /tmp
+
+RUN apk add curl tar\
   && cd /tmp \
-  && curl -O "https://raw.githubusercontent.com/TheDemonCat/onec_downloader/master/download.sh" \
-  && chmod +x download.sh \
-  && sync; ./download.sh \
+  && curl -L https://github.com/v8platform/oneget/releases/download/$ONEGET_VER/oneget_Linux_x86_64.tar.gz > oneget.tar.gz \
+  && tar -zxvf  oneget.tar.gz \
+  && rm -f oneget.tar.gz \
+  && ./oneget --nicks $TYPE --version-filter $ONEC_VERSION --distrib-filter 'deb64_.*.tar.gz$' \
+   && ./oneget --nicks $TYPE --version-filter $ONEC_VERSION --distrib-filter 'deb64.tar.gz$' \
+  && rm -f oneget \
+  && cd  $TYPE/$ONEC_VERSION \
   && for file in *.tar.gz; do tar -zxf "$file"; done \
   && rm -rf *.tar.gz
-
+  
 FROM demoncat/onec-base:latest as base
 LABEL maintainer="Ruslan Zhdanov <nl.ruslan@yandex.ru> (@TheDemonCat)"
 
-COPY --from=downloader /tmp/*.deb /tmp/dist/
+ARG ONEC_VERSION
+ARG TYPE=platform83
 
-RUN cd /tmp/dist \ 
+COPY --from=downloader /tmp/$TYPE/$ONEC_VERSION/*.deb /tmp/dist/
+
+RUN cd /tmp/dist/ \ 
     && dpkg -i 1c-enterprise83-common_*.deb \
       1c-enterprise83-server_*.deb \
       1c-enterprise83-ws_*.deb \
