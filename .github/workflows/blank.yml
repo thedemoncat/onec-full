@@ -16,14 +16,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build the Docker image
-        env:
-            ONEC_USERNAME: ${{ secrets.ONEC_USERNAME }}
-            ONEC_PASSWORD: ${{ secrets.ONEC_PASSWORD }}
-        run: bash make.sh
-        # https://github.community/t/docker-pull-from-public-github-package-registry-fail-with-no-basic-auth-credentials-error/16358/13
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
+        env:
+            ONEC_USERNAME: ${{ secrets.ONEC_USERNAME }}
+            ONEC_PASSWORD: ${{ secrets.ONEC_PASSWORD }}
+        run: bash make.sh
+
 
 
