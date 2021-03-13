@@ -19,8 +19,6 @@ buildImages() {
     
 }
 
-docker pull docker.pkg.github.com/thedemoncat/onec-base/onec_base:latest
-
 env=()
 while IFS= read -r line || [[ "$line" ]]; do
   env+=("$line")
