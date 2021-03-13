@@ -13,13 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
       - name: Build the Docker image
-        with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
+        uses: actions/checkout@v2
         env:
             ONEC_USERNAME: ${{ secrets.ONEC_USERNAME }}
             ONEC_PASSWORD: ${{ secrets.ONEC_PASSWORD }}
