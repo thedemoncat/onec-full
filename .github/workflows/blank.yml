@@ -40,18 +40,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-buildx-
 
-      -
-        name: Docker Login
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo "${GITHUB_TOKEN}" | docker login docker.pkg.github.com --username  ${{ github.repository_owner }} --password-stdin
-
       - 
         name: Push to GitHub Packages
         uses: docker/build-push-action@v2
+        run: |
+          echo "${GITHUB_TOKEN}" | docker login docker.pkg.github.com --username  ${{ github.repository_owner }} --password-stdin
         env: 
           ONEC_VERSION: ${{ steps.extract_version.outputs.version }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           context: .
           push: true
