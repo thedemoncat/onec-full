@@ -44,6 +44,9 @@ jobs:
         env: 
           ONEC_VERSION: ${{ steps.extract_version.outputs.version }}
         with:
+          registry: docker.pkg.github.com
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           context: .
           push: true
           repository: thedemoncat/onec/full
