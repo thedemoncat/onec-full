@@ -49,4 +49,4 @@ jobs:
             ONEC_VERSION=${{ steps.extract_version.outputs.version }}
           push: true
           tags: |
-            ghcr.io/thedemoncat/onec/full:${{ steps.extract_version.outputs.version }}
+            ghcr.io/thedemoncat/onec-full:${{ steps.extract_version.outputs.version }}
