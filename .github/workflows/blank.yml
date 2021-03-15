@@ -41,5 +41,5 @@ jobs:
         env:
             ONEC_USERNAME: ${{ secrets.ONEC_USERNAME }}
             ONEC_PASSWORD: ${{ secrets.ONEC_PASSWORD }}
-        run: docker pull docker.pkg.github.com/thedemoncat/onec-base/onec_base
+        run: docker pull docker.pkg.github.com/thedemoncat/onec-base/onec_base:latest
 
