@@ -34,12 +34,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "${GITHUB_TOKEN}" | docker login ghcr.io --username ${{ github.repository_owner }} --password-stdin
-
-      - 
-        name: Pull docker image
-        env:
-            ONEC_USERNAME: ${{ secrets.ONEC_USERNAME }}
-            ONEC_PASSWORD: ${{ secrets.ONEC_PASSWORD }}
-        run: docker pull docker.pkg.github.com/thedemoncat/onec-base/onec_base:latest
-
+          echo "${GITHUB_TOKEN}" | docker login ghcr.io --username ${{ github.repository_owner }} --password-stdin 
+          docker pull docker.pkg.github.com/thedemoncat/onec-base/onec_base:latest
