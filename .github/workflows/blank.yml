@@ -31,14 +31,15 @@ jobs:
             ONEC_PASSWORD: ${{ secrets.ONEC_PASSWORD }}
         run: bash make.sh 'thedemoncat/onec/full'
 
-      - name: Push to GitHub Packages
-          uses: docker/build-push-action@v1
-          with:
-            username: ${{ github.actor }}
-            password: ${{ secrets.GITHUB_TOKEN }}
-            registry: docker.pkg.github.com
-            repository: thedemoncat/onec/full
-            tag_with_ref: true
+      - 
+        name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: thedemoncat/onec/full
+          tag_with_ref: true
 
 
 
