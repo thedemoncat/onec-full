@@ -4,7 +4,7 @@ if [ -f ".env" ]; then
     export $(grep -v '^#' .env | xargs)
 fi
 
-IMAGE_NAME=${1:-"thedemoncat/onec/full"}
+IMAGE_NAME=${1:-"ghcr.io/thedemoncat/onec-full"}
 
 env=()
 while IFS= read -r line || [[ "$line" ]]; do
