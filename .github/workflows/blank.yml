@@ -17,7 +17,8 @@ jobs:
         name: Актуализация
         uses: actions/checkout@v2
 
-      - name: Извлечение версии 1С
+      - 
+        name: Извлечение версии 1С
         shell: bash
         run: echo "::set-output name=version::$(cat ONEC_VERSION | tail -n1)"
         id: extract_version
@@ -26,7 +27,7 @@ jobs:
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       
-        -
+      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
@@ -36,6 +37,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CR_PAT }}
         run: |
           echo "${GITHUB_TOKEN}" | docker login ghcr.io --username $GITHUB_ACTOR --password-stdin
+
       - 
         name: Push to GitHub Packages
           uses: docker/build-push-action@v2
