@@ -21,7 +21,7 @@ RUN apk add curl tar\
   && for file in *.tar.gz; do tar -zxf "$file"; done \
   && rm -rf *.tar.gz
   
-FROM docker.pkg.github.com/thedemoncat/onec-base/onec_base:latest as base
+FROM docker.pkg.github.com/thedemoncat/onec-base/onec_base as base
 LABEL maintainer="Ruslan Zhdanov <nl.ruslan@yandex.ru> (@TheDemonCat)"
 
 ARG ONEC_VERSION
