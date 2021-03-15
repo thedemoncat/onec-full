@@ -49,6 +49,6 @@ jobs:
             ONEC_USERNAME=${{ secrets.ONEC_USERNAME }}
             ONEC_PASSWORD=${{ secrets.ONEC_PASSWORD }}
             ONEC_VERSION=${{ steps.extract_version.outputs.version }}
-        push: true
-        tags: |
-          docker.pkg.github.com/thedemoncat/onec/full:${{ steps.extract_version.outputs.version }}
+          push: true
+          tags: |
+            docker.pkg.github.com/thedemoncat/onec/full:${{ steps.extract_version.outputs.version }}
