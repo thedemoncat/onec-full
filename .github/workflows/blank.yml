@@ -34,8 +34,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "${GITHUB_TOKEN}" | docker login docker.pkg.github.com --username ${{ github.repository_owner }} --password-stdin 
-          docker pull docker.pkg.github.com/thedemoncat/onec-base/onec_base:latest
+          echo "${GITHUB_TOKEN}" | docker login ghcr.io --username ${{ github.repository_owner }} --password-stdin 
+          docker pull ghcr.io/thedemoncat/onec-base/onec_base:latest
       
       - 
         name: Push to GitHub Packages
@@ -51,4 +51,4 @@ jobs:
             ONEC_VERSION=${{ steps.extract_version.outputs.version }}
           push: true
           tags: |
-            docker.pkg.github.com/thedemoncat/onec/full:${{ steps.extract_version.outputs.version }}
+            ghcr.io/thedemoncat/onec/full:${{ steps.extract_version.outputs.version }}
