@@ -56,4 +56,6 @@ jobs:
             ONEC_VERSION=${{ steps.extract_version.outputs.version }}
           tags: |
             docker.pkg.github.com/thedemoncat/onec/full:${{ steps.extract_version.outputs.version }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
 
