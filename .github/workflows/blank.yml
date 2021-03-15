@@ -29,8 +29,5 @@ jobs:
         env:
             ONEC_USERNAME: ${{ secrets.ONEC_USERNAME }}
             ONEC_PASSWORD: ${{ secrets.ONEC_PASSWORD }}
-        run: |
-          
-          bash make.sh docker.pkg.github.com/thedemoncat/onec/full
-          docker push docker.pkg.github.com/thedemoncat/onec/full --all-tags
-          
+        run: bash make.sh docker.pkg.github.com/thedemoncat/onec/full
+          # docker push docker.pkg.github.com/thedemoncat/onec/full --all-tags
