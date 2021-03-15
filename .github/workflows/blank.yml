@@ -32,7 +32,7 @@ jobs:
       -
         name: Docker Login
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CR_PAT }}
         run: echo "${GITHUB_TOKEN}" | docker login ghcr.io --username thedemoncat --password-stdin
 
       - 
@@ -49,4 +49,4 @@ jobs:
             ONEC_VERSION=${{ steps.extract_version.outputs.version }}
           push: true
           tags: |
-            ghcr.io/thedemoncat/onec-full:${{ steps.extract_version.outputs.version }}
+            ghcr.io/thedemoncat/onec/full:${{ steps.extract_version.outputs.version }}
