@@ -1,4 +1,4 @@
-# Полный образ 1С:Предприятие и EDT
+# Полный образ 1С:Предприятие
 
 [![CI](https://github.com/TheDemonCat/onec-full/actions/workflows/blank.yml/badge.svg)](https://github.com/TheDemonCat/onec-full/actions/workflows/blank.yml)
 
