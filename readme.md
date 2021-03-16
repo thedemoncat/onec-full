@@ -2,8 +2,6 @@
 
 [![CI](https://github.com/TheDemonCat/onec-full/actions/workflows/blank.yml/badge.svg)](https://github.com/TheDemonCat/onec-full/actions/workflows/blank.yml)
 
-[![CI](https://github.com/TheDemonCat/onec-full/actions/workflows/blank.yml/badge.svg)](https://github.com/TheDemonCat/onec-full/actions/workflows/blank.yml)
-
 ## Сборка 
 
 1. Создать файл `.env` в корне проекта. В качестве примера использовать `.env.example`. В файле должны быть определены переменные:
