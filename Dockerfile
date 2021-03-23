@@ -33,3 +33,9 @@ RUN cd /tmp/dist/ \
   && rm -rf dist
 
 RUN mkdir -p /root/.1cv8/1C/1cv8/conf/
+
+COPY ./scripts/create_symlink.sh create_symlink.sh
+
+RUN set -e \
+  && chmod +x create_symlink.sh \
+  && ./create_symlink.sh $ONEC_VERSION
