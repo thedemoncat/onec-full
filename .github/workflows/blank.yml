@@ -1,4 +1,4 @@
-name: CI
+name: onec full build
 
 on:
   push:
