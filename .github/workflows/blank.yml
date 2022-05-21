@@ -47,26 +47,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.CR_PAT }}
         run: echo "${GITHUB_TOKEN}" | docker login ghcr.io --username thedemoncat --password-stdin
 
-      - name: Push to GitHub Packages old version
-        if: ${{ aVariablesteps.build_version.outputs.version < 20 }}"
-        uses: docker/build-push-action@v2
-        env: 
-          ONEC_VERSION: ${{ steps.extract_version.outputs.version }}        
-        with:
-          context: .
-          file: Dockerfile-deb
-          build-args: |
-            ONEC_USERNAME=${{ secrets.ONEC_USERNAME }}
-            ONEC_PASSWORD=${{ secrets.ONEC_PASSWORD }}
-            ONEC_VERSION=${{ steps.extract_version.outputs.version }}
-          push: true
-          tags: |
-            ghcr.io/thedemoncat/onec-full:${{ steps.extract_version.outputs.version }}
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
  
       - name: Push to GitHub Packages new version
-        if: {{ aVariablesteps.build_version.outputs.version > 19 }}
         uses: docker/build-push-action@v2
         env: 
           ONEC_VERSION: ${{ steps.extract_version.outputs.version }}        
