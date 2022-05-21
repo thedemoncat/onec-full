@@ -16,15 +16,20 @@ RUN set -xe; \
   apt install -y \ 
     curl \
     bash \
-    gzip; \
-    rm -rf /var/lib/apt/lists/*
+    gzip
 
-RUN  cd /tmp; \
+RUN  set -xe; \
+  cd /tmp; \
   curl -sL http://git.io/oneget.sh > oneget; \
   chmod +x oneget; \ 
-  ./oneget --debug get  --extract --rename platform:linux.full.x64@$ONEC_VERSION; \
-  cd /tmp/downloads/$TYPE/$ONEC_VERSION/server64.$ONEC_VERSION.tar.gz.extract; \ 
-  ./setup-full-$ONEC_VERSION-x86_64.run --mode unattended  --enable-components client_thin,ws,server_admin,server  --installer-language en; \
+  ./oneget --debug  get  --extract --rename platform:deb.server.x64@$ONEC_VERSION; \
+  ./oneget --debug  get  --extract --rename platform:deb.client.x64@$ONEC_VERSION; \
+  cd /tmp/downloads/$TYPE/$ONEC_VERSION/deb64.$ONEC_VERSION.tar.gz.extract; \ 
+  dpkg -i common-*.deb \
+      server-*.deb \
+      ws-*.deb; \
+  cd ../client.$ONEC_VERSION.deb64.tar.gz.extract; \
+  dpkg -i client-*.deb; \
   cd /tmp; \
   rm -rf downloads
 
