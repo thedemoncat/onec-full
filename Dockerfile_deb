@@ -1,25 +1,24 @@
 FROM demoncat/onec-base:latest as base
 LABEL maintainer="Ruslan Zhdanov <nl.ruslan@yandex.ru> (@TheDemonCat)"
 
-ARG TYPE=platform83
-
 ARG ONEC_USERNAME
 ARG ONEC_PASSWORD
 ARG ONEC_VERSION
 ARG TYPE=platform83
 
 ARG ONEGET_VER=v0.5.2
-WORKDIR /tmp
 
 RUN set -xe; \
   apt update; \
   apt install -y \ 
     curl \
     bash \
-    gzip
+    gzip; \
+    rm -rf /var/lib/apt/lists/*
 
 RUN  set -xe; \
-  cd /tmp; \
+  mkdir /tmp/onec; \
+  cd /tmp/onec; \
   curl -sL http://git.io/oneget.sh > oneget; \
   chmod +x oneget; \ 
   ./oneget --debug  get  --extract --rename platform:deb.server.x64@$ONEC_VERSION; \
@@ -31,7 +30,7 @@ RUN  set -xe; \
   cd ../client.$ONEC_VERSION.deb64.tar.gz.extract; \
   dpkg -i client-*.deb; \
   cd /tmp; \
-  rm -rf downloads
+  rm -rf /tmp/onec
 
 COPY ./scripts/create_symlink.sh create_symlink.sh
 
